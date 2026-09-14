@@ -1,0 +1,57 @@
+import type { WebsiteContent } from '../types';
+
+export const COMPANY_PROFILE: WebsiteContent = {
+  companyName: 'Fastway Delivery Services',
+  tagline: 'Fast Delivery. Trusted Service.',
+  supportPhone: '',
+  supportEmail: '',
+  headquarters: '',
+  hubs: [],
+  services: [
+    {
+      id: 'express-parcel',
+      title: 'Express Parcel Delivery',
+      tagline: 'Fast and dependable doorstep package delivery',
+      description: 'Fast and dependable delivery for documents, parcels and time-sensitive packages.',
+      iconName: 'Zap',
+      speed: 'Express Doorstep',
+      suitableFor: 'Documents, commercial parcels, priority personal deliveries',
+    },
+    {
+      id: 'air-freight',
+      title: 'Air Freight & Cargo',
+      tagline: 'Efficient air transportation for high-priority shipments',
+      description: 'Efficient air transportation for cargo requiring speed, secure handling and reliable movement across international routes.',
+      iconName: 'Plane',
+      speed: 'Priority Air Transit',
+      suitableFor: 'Time-critical cargo, high-value consignments, international air freight',
+    },
+    {
+      id: 'road-freight',
+      title: 'Road Freight & Line Haul',
+      tagline: 'Dependable ground transportation and bulk carriage',
+      description: 'Dependable road transportation for commercial cargo, freight and scheduled long-distance movement.',
+      iconName: 'Truck',
+      speed: 'Scheduled Line-Haul',
+      suitableFor: 'Commercial goods, palletized freight, full truckload movements',
+    },
+    {
+      id: 'ocean-freight',
+      title: 'Ocean Freight & Container Logistics',
+      tagline: 'Practical maritime cargo and container shipping',
+      description: 'Practical sea freight and container transportation for larger shipments and international cargo movement.',
+      iconName: 'Ship',
+      speed: 'Maritime Cargo',
+      suitableFor: 'Consolidated containers, industrial machinery, international maritime freight',
+    },
+    {
+      id: 'supply-chain',
+      title: 'Supply Chain Solutions',
+      tagline: 'Flexible logistics support for growing enterprises',
+      description: 'Flexible logistics support for businesses requiring coordinated transportation, movement and delivery.',
+      iconName: 'Box',
+      speed: 'Coordinated Logistics',
+      suitableFor: 'Enterprise distribution, retail fulfillment, scheduled freight management',
+    },
+  ],
+};

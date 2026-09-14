@@ -1,0 +1,532 @@
+/* ==========================================================================
+   FASTWAY DELIVERY SERVICES — DESIGN SYSTEM & BASE STYLES
+   Visual Identity:
+   - Deep Navy: #071A2B
+   - Primary Blue: #1769E0
+   - Logistics Orange: #F26B21
+   - Warm White: #F7F8F6
+   - Charcoal: #17212B
+   ========================================================================== */
+
+:root {
+  /* Brand Core Colors */
+  --color-navy: #071A2B;
+  --color-navy-surface: #0B253D;
+  --color-navy-card: #103252;
+  --color-navy-border: #1B456D;
+  
+  --color-blue: #1769E0;
+  --color-blue-hover: #1255B7;
+  --color-blue-active: #0D4190;
+  --color-blue-light: #EBF3FD;
+  --color-blue-subtle: rgba(23, 105, 224, 0.08);
+
+  --color-orange: #F26B21;
+  --color-orange-hover: #D95610;
+  --color-orange-active: #BF4707;
+  --color-orange-light: #FEF3EC;
+  --color-orange-subtle: rgba(242, 107, 33, 0.1);
+
+  --color-warm-white: #F7F8F6;
+  --color-white: #FFFFFF;
+  --color-surface-alt: #EEF2F6;
+
+  --color-charcoal: #17212B;
+  --color-charcoal-light: #334155;
+  --color-charcoal-muted: #64748B;
+  --color-charcoal-subtle: #94A3B8;
+
+  /* Functional Status Colors */
+  --color-success: #059669;
+  --color-success-bg: #ECFDF5;
+  --color-warning: #D97706;
+  --color-warning-bg: #FFFBEB;
+  --color-danger: #DC2626;
+  --color-danger-bg: #FEF2F2;
+  --color-info: #0284C7;
+  --color-info-bg: #F0F9FF;
+
+  /* Border Tokens */
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E1;
+  --border-dark: rgba(255, 255, 255, 0.12);
+  --border-dark-strong: rgba(255, 255, 255, 0.2);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(7, 26, 43, 0.05);
+  --shadow-md: 0 4px 10px -1px rgba(7, 26, 43, 0.08), 0 2px 4px -2px rgba(7, 26, 43, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(7, 26, 43, 0.12), 0 4px 8px -2px rgba(7, 26, 43, 0.06);
+  --shadow-xl: 0 24px 40px -8px rgba(7, 26, 43, 0.16);
+  --shadow-navy: 0 16px 36px -6px rgba(7, 26, 43, 0.35);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Container */
+  --container-max-width: 1240px;
+}
+
+/* Reset and Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--color-charcoal);
+  background-color: var(--color-warm-white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-charcoal);
+  background-color: var(--color-warm-white);
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-navy);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2rem, 4vw + 1rem, 3.25rem); font-weight: 800; }
+h2 { font-size: clamp(1.6rem, 2.5vw + 0.5rem, 2.35rem); }
+h3 { font-size: clamp(1.25rem, 1.5vw + 0.4rem, 1.65rem); }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+p {
+  line-height: 1.65;
+  color: var(--color-charcoal-light);
+}
+
+/* Accessibility: Focus Ring */
+:focus-visible {
+  outline: 2.5px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+/* Utility Layout Classes */
+.site-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+/* Section Containers */
+.section {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+  }
+}
+
+.section-warm {
+  background-color: var(--color-warm-white);
+}
+
+.section-white {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section-navy {
+  background-color: var(--color-navy);
+  color: var(--color-warm-white);
+}
+
+.section-navy h1,
+.section-navy h2,
+.section-navy h3,
+.section-navy h4 {
+  color: var(--color-white);
+}
+
+.section-navy p {
+  color: rgba(247, 248, 246, 0.82);
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  background: var(--color-orange);
+  color: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  z-index: 9999;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* Responsive Navigation Utilities */
+.mobile-menu-btn {
+  display: flex !important;
+}
+
+@media (min-width: 992px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+  .desktop-actions {
+    display: flex !important;
+  }
+  .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Professional Footer Layout Utilities */
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 640px) {
+  .footer-main-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-main-grid {
+    grid-template-columns: 3fr 2fr 2fr 2fr;
+    gap: var(--space-10);
+  }
+}
+
+.footer-nav-link {
+  color: rgba(247, 248, 246, 0.72);
+  font-size: 0.88rem;
+  transition: all var(--transition-fast);
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 3px 0;
+}
+
+.footer-nav-link:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+.footer-nav-link:focus-visible {
+  outline: 2px solid var(--color-blue);
+  border-radius: 2px;
+}
+
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-ring 2s infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* ==========================================================================
+   CINEMATIC LOGISTICS MOTION & REALISTIC BACKGROUND ANIMATIONS
+   ========================================================================== */
+
+/* Ken Burns Realistic Camera Motion for Hero Logistics Fleet */
+@keyframes kenBurnsHero {
+  0% {
+    transform: scale(1.02) translate(0%, 0%);
+  }
+  25% {
+    transform: scale(1.08) translate(-1.8%, -1.2%);
+  }
+  50% {
+    transform: scale(1.12) translate(-2.5%, 0.8%);
+  }
+  75% {
+    transform: scale(1.07) translate(-0.8%, 1.5%);
+  }
+  100% {
+    transform: scale(1.02) translate(0%, 0%);
+  }
+}
+
+.hero-animated-bg {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  animation: kenBurnsHero 28s ease-in-out infinite alternate;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Ken Burns Continuous Panoramic Drift for Multi-Modal Global Network */
+@keyframes kenBurnsPanorama {
+  0% {
+    transform: scale(1.04) translate(0%, 0%);
+  }
+  35% {
+    transform: scale(1.10) translate(-3%, -1.5%);
+  }
+  70% {
+    transform: scale(1.08) translate(2%, 1%);
+  }
+  100% {
+    transform: scale(1.04) translate(0%, 0%);
+  }
+}
+
+.panorama-animated-bg {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  animation: kenBurnsPanorama 32s ease-in-out infinite alternate;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Atmospheric Moving Sunlight & Headlight Sweep Across Fleet */
+@keyframes logisticsLightSweep {
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.18;
+  }
+  45% {
+    opacity: 0.32;
+  }
+  60% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateX(260%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.logistics-light-sweep {
+  position: absolute;
+  inset: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(23, 105, 224, 0.22) 75%,
+    transparent 100%
+  );
+  animation: logisticsLightSweep 11s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Animated Transit Route Lines (Moving Dashes) */
+@keyframes transitDashFlow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.transit-route-line {
+  stroke-dasharray: 8, 6;
+  animation: transitDashFlow 2.5s linear infinite;
+}
+
+.transit-route-line-fast {
+  stroke-dasharray: 6, 5;
+  animation: transitDashFlow 1.6s linear infinite;
+}
+
+/* Pulsing GPS Telemetry Beacons */
+@keyframes beaconPingAnim {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.beacon-ping {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-blue);
+  animation: beaconPingAnim 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.beacon-ping-orange {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-orange);
+  animation: beaconPingAnim 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Radar Sweep Line Effect for Global Panorama */
+@keyframes radarSweepAngle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep-cone {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(23, 105, 224, 0.15) 0deg,
+    rgba(23, 105, 224, 0.05) 45deg,
+    transparent 60deg,
+    transparent 360deg
+  );
+  animation: radarSweepAngle 8s linear infinite;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+

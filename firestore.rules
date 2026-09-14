@@ -1,0 +1,87 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for role-based authorization
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function userDocExists() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        !userDocExists() ||
+        getUserData().role == 'admin' || 
+        getUserData().role == 'super_admin'
+      );
+    }
+
+    function isStaff() {
+      return isAuthenticated() && (
+        !userDocExists() ||
+        getUserData().role == 'admin' || 
+        getUserData().role == 'super_admin' || 
+        getUserData().role == 'staff' || 
+        getUserData().role == 'dispatcher' ||
+        getUserData().role == 'logistics_manager'
+      );
+    }
+
+    function isDriver() {
+      return isAuthenticated() && (
+        !userDocExists() ||
+        getUserData().role == 'driver'
+      );
+    }
+
+    // User profiles collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin() || isStaff());
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update, delete: if isAdmin() || (isAuthenticated() && request.auth.uid == userId);
+    }
+
+    // Shipments root collection
+    match /shipments/{shipmentId} {
+      // Direct lookup by tracking reference or ID is permitted for public tracking
+      allow get: if true;
+      // Listing or browsing the entire collection requires authorized staff
+      allow list: if isStaff() || isDriver();
+      // Only authorized staff/admins can create or delete consignments
+      allow create, delete: if isStaff();
+      // Drivers can update if assigned to them, staff can update anything
+      allow update: if isStaff() || (isDriver() && resource.data.assignedDriverId == request.auth.uid);
+
+      // Tracking events subcollection (chronological milestone history)
+      match /trackingEvents/{eventId} {
+        allow read: if true;
+        allow write: if isStaff() || (isDriver() && get(/databases/$(database)/documents/shipments/$(shipmentId)).data.assignedDriverId == request.auth.uid);
+      }
+    }
+
+    // Customer booking requests / intake queue
+    match /bookingRequests/{requestId} {
+      // Public can submit booking inquiries (strictly validated)
+      allow create: if request.resource.data.sender != null &&
+                       request.resource.data.receiver != null &&
+                       request.resource.data.serviceType != null;
+      // Only authorized staff can view, review, or process booking requests
+      allow read, update, delete: if isStaff();
+    }
+
+    // Contact messages / inquiry queue
+    match /contactInquiries/{inquiryId} {
+      allow create: if request.resource.data.name != null &&
+                       request.resource.data.email != null;
+      allow read, update, delete: if isStaff();
+    }
+  }
+}
