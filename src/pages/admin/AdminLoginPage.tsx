@@ -20,10 +20,6 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isInitializingAdmin, setIsInitializingAdmin] = useState(false);
-  const [initSuccessMsg, setInitSuccessMsg] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null);
     setIsSubmitting(true);
@@ -49,39 +45,6 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
     }
   };
 
-  /**
-   * Convenience administrative provisioning helper for first-time project initialization
-   */
-  const handleProvisionInitialAdmin = async () => {
-    setIsInitializingAdmin(true);
-    setErrorMsg(null);
-    setInitSuccessMsg(null);
-
-    try {
-      const adminEmail = 'admin@fastwaydelivery.com';
-      const adminPass = 'FastwayAdmin2026!';
-      await authService.registerAdminUser(
-        adminEmail,
-        adminPass,
-        'Lead Logistics Administrator',
-        'super_admin'
-      );
-      setEmail(adminEmail);
-      setPassword(adminPass);
-      setInitSuccessMsg('Primary administrator account provisioned successfully! Credentials auto-filled.');
-    } catch (err: unknown) {
-      const error = err as { code?: string; message?: string };
-      if (error.code === 'auth/email-already-in-use') {
-        setEmail('admin@fastwaydelivery.com');
-        setPassword('FastwayAdmin2026!');
-        setInitSuccessMsg('Primary admin account already registered. Credentials auto-filled.');
-      } else {
-        setErrorMsg(error.message || 'Could not provision initial account.');
-      }
-    } finally {
-      setIsInitializingAdmin(false);
-    }
-  };
 
   return (
     <div
@@ -157,25 +120,6 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
           </div>
         )}
 
-        {initSuccessMsg && (
-          <div
-            style={{
-              backgroundColor: 'var(--color-success-bg)',
-              border: '1px solid var(--color-success)',
-              borderRadius: 'var(--radius-md)',
-              padding: 'var(--space-3) var(--space-4)',
-              marginBottom: 'var(--space-4)',
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '8px',
-              fontSize: '0.85rem',
-              color: 'var(--color-success)',
-            }}
-          >
-            <ShieldCheck size={18} style={{ flexShrink: 0, marginTop: '2px' }} />
-            <span>{initSuccessMsg}</span>
-          </div>
-        )}
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
           <Input
@@ -210,28 +154,6 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
           </Button>
         </form>
 
-        {/* First-time Setup Helper */}
-        <div
-          style={{
-            marginTop: 'var(--space-8)',
-            borderTop: '1px solid var(--border-light)',
-            paddingTop: 'var(--space-4)',
-            textAlign: 'center',
-          }}
-        >
-          <span style={{ fontSize: '0.8rem', color: 'var(--color-charcoal-muted)', display: 'block', marginBottom: '8px' }}>
-            First-time system setup on project: <strong>delivery-67506</strong>
-          </span>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleProvisionInitialAdmin}
-            isLoading={isInitializingAdmin}
-            leftIcon={<UserCheck size={14} />}
-          >
-            Provision / Auto-Fill Primary Admin
-          </Button>
-        </div>
       </div>
     </div>
   );
