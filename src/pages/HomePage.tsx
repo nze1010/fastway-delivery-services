@@ -900,10 +900,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
       <section
         id="dispatch-support"
         style={{
-          background: 'linear-gradient(180deg, #091F33 0%, #061626 100%)',
-          color: '#FFFFFF',
+          background: '#FFFFFF',
           padding: 'var(--space-16) 0',
-          borderTop: '1px solid var(--color-navy-border)',
+          borderTop: '1px solid var(--border-light)',
         }}
       >
         <Container>
@@ -918,8 +917,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
             {/* Primary Shipping Action Card */}
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backgroundColor: 'var(--color-navy-card)',
+                border: '1px solid var(--color-navy-border)',
                 borderRadius: 'var(--radius-xl)',
                 padding: 'var(--space-8)',
                 display: 'flex',
@@ -965,8 +964,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
             {/* Support Callout Box */}
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backgroundColor: 'var(--color-navy-card)',
+                border: '1px solid var(--color-navy-border)',
                 borderRadius: 'var(--radius-xl)',
                 padding: 'var(--space-8)',
                 display: 'flex',
