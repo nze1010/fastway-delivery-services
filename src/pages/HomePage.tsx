@@ -718,17 +718,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
         </Container>
       </section>
 
-      {/* 4. HOW FASTWAY WORKS: Simple Customer Journey (Warm White Background) */}
-      <Section background="warm" paddingY="lg" id="how-it-works">
+      {/* 4. HOW FASTWAY WORKS: Simple Customer Journey (Dark Navy — matches service cards) */}
+      <Section background="navy" paddingY="lg" id="how-it-works">
         <Container>
           <div style={{ maxWidth: '640px', margin: '0 auto var(--space-12)', textAlign: 'center' }}>
-            <span style={{ fontSize: '0.82rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-blue)' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-orange)' }}>
               Simple Process
             </span>
-            <h2 style={{ fontSize: '2.2rem', color: 'var(--color-navy)', marginTop: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
+            <h2 style={{ fontSize: '2.2rem', color: '#FFFFFF', marginTop: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
               How Fastway Works
             </h2>
-            <p style={{ color: 'var(--color-charcoal-light)', fontSize: '1.05rem' }}>
+            <p style={{ color: 'rgba(247, 248, 246, 0.72)', fontSize: '1.05rem' }}>
               Four simple steps from package preparation to final delivery.
             </p>
           </div>
@@ -744,11 +744,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
               <div
                 key={idx}
                 style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: 'var(--color-navy-card)',
                   padding: 'var(--space-8) var(--space-6)',
                   borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--border-light)',
-                  boxShadow: 'var(--shadow-sm)',
+                  border: '1px solid var(--color-navy-border)',
+                  boxShadow: '0 4px 24px rgba(7, 26, 43, 0.45)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'var(--space-3)',
@@ -761,15 +761,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
                     fontWeight: 800,
                     fontFamily: 'var(--font-display)',
                     color: 'var(--color-blue)',
-                    opacity: 0.3,
+                    opacity: 0.65,
                   }}
                 >
                   {item.step}
                 </span>
-                <h3 style={{ fontSize: '1.25rem', color: 'var(--color-navy)' }}>
+                <h3 style={{ fontSize: '1.25rem', color: '#FFFFFF' }}>
                   {item.title}
                 </h3>
-                <p style={{ fontSize: '0.92rem', color: 'var(--color-charcoal-light)', lineHeight: 1.65 }}>
+                <p style={{ fontSize: '0.92rem', color: 'rgba(247, 248, 246, 0.72)', lineHeight: 1.65 }}>
                   {item.desc}
                 </p>
               </div>
