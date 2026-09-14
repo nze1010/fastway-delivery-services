@@ -718,17 +718,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onSearchTracking
         </Container>
       </section>
 
-      {/* 4. HOW FASTWAY WORKS: Simple Customer Journey (Dark Navy — matches service cards) */}
-      <Section background="navy" paddingY="lg" id="how-it-works">
+      {/* 4. HOW FASTWAY WORKS: Simple Customer Journey (White Background) */}
+      <Section background="white" paddingY="lg" id="how-it-works">
         <Container>
           <div style={{ maxWidth: '640px', margin: '0 auto var(--space-12)', textAlign: 'center' }}>
             <span style={{ fontSize: '0.82rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-orange)' }}>
               Simple Process
             </span>
-            <h2 style={{ fontSize: '2.2rem', color: '#FFFFFF', marginTop: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
+            <h2 style={{ fontSize: '2.2rem', color: 'var(--color-navy)', marginTop: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
               How Fastway Works
             </h2>
-            <p style={{ color: 'rgba(247, 248, 246, 0.72)', fontSize: '1.05rem' }}>
+            <p style={{ color: 'var(--color-charcoal-light)', fontSize: '1.05rem' }}>
               Four simple steps from package preparation to final delivery.
             </p>
           </div>
