@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { BrandLogo } from '../../components/brand/BrandLogo';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { Lock, Mail, ShieldAlert, ArrowLeft, ShieldCheck, UserCheck } from 'lucide-react';
+import { Lock, Mail, ShieldAlert, ArrowLeft, ShieldCheck, UserCheck, Eye, EyeOff } from 'lucide-react';
 import { authService } from '../../services/firebase/authService';
 
 export interface AdminLoginPageProps {
@@ -20,6 +20,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,10 +137,28 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
 
           <Input
             label="Security Password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             required
             placeholder="••••••••••••"
             leftIcon={<Lock size={16} />}
+            rightIcon={
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: 'inherit',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '2px',
+                }}
+                title={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            }
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
