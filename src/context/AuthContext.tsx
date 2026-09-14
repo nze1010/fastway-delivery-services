@@ -37,6 +37,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     try {
       const { user: loggedUser, profile: loggedProfile } = await authService.login(email, pass);
+      
+      const role = loggedProfile?.role || null;
+      const isAdminRole = role === 'admin' || role === 'super_admin';
+      const isStaffRole = isAdminRole || role === 'staff' || role === 'dispatcher' || role === 'logistics_manager' || role === 'driver';
+
+      if (!loggedProfile || !isStaffRole) {
+        await authService.logout();
+        const err = new Error('Account lacks administrative privileges. Please verify your role in the database.');
+        (err as any).code = 'auth/insufficient-permissions';
+        throw err;
+      }
+
       setUser(loggedUser);
       setProfile(loggedProfile);
     } finally {

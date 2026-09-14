@@ -40,6 +40,8 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({
         setErrorMsg('Invalid administrative credentials. Please verify your email and password.');
       } else if (error.code === 'auth/too-many-requests') {
         setErrorMsg('Access temporarily blocked due to repeated failed attempts. Please try again later.');
+      } else if (error.code === 'auth/insufficient-permissions') {
+        setErrorMsg(error.message || 'You lack administrative privileges.');
       } else {
         setErrorMsg(error.message || 'Authentication failed. Please check your network connection.');
       }
